@@ -1,0 +1,24 @@
+
+    body {
+        margin: 0;
+    }
+
+    #myCanvas {
+        background: pink;
+    }
+
+    .actions {
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .actions > #brush{
+        display: none;
+    }
+    .actions.x #eraser{
+        display:none;
+    }
+    .actions.x #brush{
+        display: inline-block;
+    }
