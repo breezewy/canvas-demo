@@ -1,24 +1,76 @@
 
-    body {
+    * {
         margin: 0;
+        padding:0;
     }
-
+    body{
+        overflow: hidden;  /*手机端不出滚动条*/
+    }
+    ul,li{
+        list-style: none;
+    }
+    .icon {
+       width: 1em; height: 1em;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
+    }
     #myCanvas {
-        background: pink;
+        display: block;
     }
 
     .actions {
         position: fixed;
         left: 0;
         top: 0;
+        padding:20px;
+    }
+    .actions svg{
+        width:1.8em;
+        height:1.8em;
+        margin:0 10px;
+        transition:all 0.3s;
+    }
+    .actions svg.active{
+        fill:red;
+        transform:scale(1.3);
+    }
+ 
+    
+    .colors{
+        position: fixed;
+        top:100px;
+        left:28px;
+    }
+    .colors li{
+        width:20px;
+        height:20px;
+        margin-top:20px;
+        border-radius:50%;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s;
+    }
+    .colors li.black{
+        background:black;
+    }
+    .colors li.red{
+        background:red;
+    }
+    .colors li.green{
+        background:green;
+    }
+    .colors li.blue{
+        background:blue;
+    }
+    .colors li.yellow{
+        background:yellow;
+    }
+    .colors li.pink{
+        background:pink;
+    }
+    .colors li.active{
+        transform:scale(1.3);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
     }
 
-    .actions > #brush{
-        display: none;
-    }
-    .actions.x #eraser{
-        display:none;
-    }
-    .actions.x #brush{
-        display: inline-block;
-    }
+    

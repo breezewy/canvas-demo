@@ -8,19 +8,89 @@ listenToUser(div);  //监听鼠标事件做事情
 
 // 橡皮擦
 var eraserEnabled = false;  //eraserEnabled变量表示 橡皮擦是否被激活
-var eraser = document.getElementById('eraser');
 
-// 如果点击橡皮擦，橡皮擦启用
-eraser.onclick = function () {
-    eraserEnabled = true;
-    action.className = "actions x";
-}
-
-// 如果点击画笔，橡皮擦禁用
-brush.onclick = function () {
+//onclick 事件时 PC端和手机端都支持的
+// 画笔和橡皮擦的切换
+pen.onclick = function(){
     eraserEnabled = false;
-    action.className = "actions";
+    pen.classList.add('active');
+    eraser.classList.remove('active');
 }
+eraser.onclick = function(){
+    eraserEnabled = true;
+    eraser.classList.add('active');
+    pen.classList.remove('active');
+}
+
+
+
+//画笔颜色的切换。
+black.onclick = function () {
+    ctx.strokeStyle = 'black';
+    black.classList.add('active');
+    $('#black').siblings().each(function (index, element) {
+        console.log(element);
+        element.classList.remove('active');
+    })
+}
+red.onclick = function(){
+    ctx.strokeStyle = 'red';
+    red.classList.add('active');
+    $('#red').siblings().each(function (index, element) {
+        console.log(element);
+        element.classList.remove('active');
+    })
+}
+green.onclick = function () {
+    ctx.strokeStyle = 'green';
+    green.classList.add('active');
+    $('#green').siblings().each(function (index,element) {
+        console.log(element);
+        
+        element.classList.remove('active');
+    })
+}
+blue.onclick = function(){
+    ctx.strokeStyle = 'blue';
+    blue.classList.add('active');
+    $('#blue').siblings().each(function (index, element) {
+        console.log(element);
+
+        element.classList.remove('active');
+    })
+}
+yellow.onclick = function () {
+    ctx.strokeStyle = 'yellow';
+    yellow.classList.add('active');
+    $('#yellow').siblings().each(function (index, element) {
+        console.log(element);
+
+        element.classList.remove('active');
+    })
+}
+pink.onclick = function () {
+    ctx.strokeStyle = 'pink';
+    pink.classList.add('active');
+    $('#pink').siblings().each(function (index, element) {
+        console.log(element);
+
+        element.classList.remove('active');
+    })
+}
+
+// var eraser = document.getElementById('eraser');
+//  如果点击橡皮擦，橡皮擦启用
+// eraser.onclick = function () {
+//     eraserEnabled = true;
+//     action.className = "actions x";
+// }
+//  如果点击画笔，橡皮擦禁用
+// brush.onclick = function () {
+//     eraserEnabled = false;
+//     action.className = "actions";
+// }
+
+
 
 
 //-----------------------------------
@@ -79,7 +149,7 @@ function listenToUser(canvas) {
             var y = a.touches[0].clientY;
             using = true;
             if (eraserEnabled) {
-                ctx.clearRect(x - 5, y - 5, 10, 10);
+                ctx.clearRect(x - 5, y - 5, 15, 15);
             } else {
                 lastPoint = { x: x, y: y };
             }

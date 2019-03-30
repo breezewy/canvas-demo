@@ -5,18 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    
+    <script src="https://at.alicdn.com/t/font_1116743_c68fpadj8ik.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.min.js"></script>
 </head>
 <body>
     <canvas id="myCanvas" width="300" height="300"></canvas>
     <div id="actions" class="actions">
-        <button id="eraser">橡皮擦</button>
-        <button id="brush">画笔</button>
+        <svg id=pen class="icon active">
+            <use xlink:href="#icon-pen"></use>
+        </svg>
+        <svg id=eraser class="icon">
+            <use xlink:href="#icon-eraser"></use>
+        </svg>
     </div>
+
+    <ul class="colors">
+        <li id="black" class="black active"></li>
+        <li id="red" class="red "></li>
+        <li id="green" class="green"></li>
+        <li id="blue" class="blue"></li>
+        <li id="yellow" class="yellow"></li>
+        <li id="pink" class="pink"></li>
+    </ul>
     <script src="./main.js"></script>
 </body>
 </html>
