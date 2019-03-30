@@ -30,6 +30,7 @@
         height:1.8em;
         margin:0 10px;
         transition:all 0.3s;
+        cursor:pointer;
     }
     .actions svg.active{
         fill:red;
@@ -49,6 +50,7 @@
         border-radius:50%;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         transition: all 0.3s;
+        cursor:pointer;
     }
     .colors li.black{
         background:black;
@@ -81,6 +83,7 @@
     .size li{
        margin-top:20px;
        transition: all 0.3s;
+       cursor:pointer;
     } 
     .size > .thin{
        height:0;
