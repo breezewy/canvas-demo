@@ -80,21 +80,26 @@
     }
     .size li{
        margin-top:20px;
+       transition: all 0.3s;
     } 
     .size > .thin{
        height:0;
        width: 20px;
-       border-top:3px solid black;
+       border-top:3px solid rgba(0, 0, 0, 0.3);
     }
     .size > .thick{
        height:0;
        width: 20px;
-       border-top: 6px solid black;
+       border-top:6px solid rgba(0, 0, 0, 0.3);
     }
     .size > .more{
        height:0;
        width: 20px;
-       border-top: 9px solid black;
+       border-top:9px solid rgba(0, 0, 0, 0.3);
+    }
+    .size li.active{
+       border-color:rgba(0, 0, 0, 0.8);
+       transform: scale(1.2);
     }
 
     

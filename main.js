@@ -95,12 +95,21 @@ pink.onclick = function () {
 
 thin.onclick = function(){
     lineWidth = 3
+    thin.classList.add('active');
+    thick.classList.remove('active');
+    more.classList.remove('active');
 }
 thick.onclick = function () {
     lineWidth = 6
+    thick.classList.add('active');
+    thin.classList.remove('active');
+    more.classList.remove('active');
 }
 more.onclick = function () {
     lineWidth = 9
+    more.classList.add('active');
+    thin.classList.remove('active');
+    thick.classList.remove('active');
 }
 
 
