@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="https://at.alicdn.com/t/font_1116743_c68fpadj8ik.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.min.js"></script>
 </head>
 <body>
     <canvas id="myCanvas" width="300" height="300"></canvas>
@@ -19,6 +17,12 @@
         </svg>
         <svg id=eraser class="icon">
             <use xlink:href="#icon-eraser"></use>
+        </svg>
+        <svg id=clear class="icon">
+            <use xlink:href="#icon-clear"></use>
+        </svg>
+        <svg id=save class="icon">
+            <use xlink:href="#icon-save"></use>
         </svg>
     </div>
 
@@ -30,6 +34,15 @@
         <li id="yellow" class="yellow"></li>
         <li id="pink" class="pink"></li>
     </ul>
+
+    <ul class="size">
+        <li id="thin" class="thin"></li>
+        <li id="thick" class="thick"></li>
+        <li id="more" class="more"></li>
+    </ul>
+
+    <script src="https://cdn.bootcss.com/jquery/2.1.2/jquery.min.js"></script>
     <script src="./main.js"></script>
+    <script src="https://at.alicdn.com/t/font_1116743_39tn64ttvm1.js"></script>
 </body>
 </html>

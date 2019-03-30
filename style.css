@@ -73,4 +73,28 @@
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
     }
 
+    .size{
+        position: fixed;
+        right:20px;
+        top:10px;
+    }
+    .size li{
+       margin-top:20px;
+    } 
+    .size > .thin{
+       height:0;
+       width: 20px;
+       border-top:3px solid black;
+    }
+    .size > .thick{
+       height:0;
+       width: 20px;
+       border-top: 6px solid black;
+    }
+    .size > .more{
+       height:0;
+       width: 20px;
+       border-top: 9px solid black;
+    }
+
     

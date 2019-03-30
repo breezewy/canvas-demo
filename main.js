@@ -2,6 +2,7 @@
 var div = document.getElementById('myCanvas');
 var ctx = div.getContext('2d');
 var action = document.getElementById('actions');
+var lineWidth = 3;
 
 autoSetSize(div);  //把画布的宽高设为的跟视图的一样
 listenToUser(div);  //监听鼠标事件做事情
@@ -20,6 +21,20 @@ eraser.onclick = function(){
     eraserEnabled = true;
     eraser.classList.add('active');
     pen.classList.remove('active');
+}
+clear.onclick = function(){
+    ctx.clearRect(0,0,div.width,div.height);
+}
+save.onclick = function(){
+    // toDataURL() 方法返回一个包含图片展示的 data URI 默认为 PNG 格式
+    // 语法   canvas.toDataURL(type, encoderOptions);
+    // type 可选  图片格式，默认为 image / png
+    // encoderOptions 可选  在指定图片格式为 image/jpeg 或 image/webp的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92。其他参数会被忽略。
+    var _url = div.toDataURL();
+    var a = document.createElement('a');
+    a.href = _url;
+    a.download = 'canvasImg';
+    a.click();
 }
 
 
@@ -78,17 +93,16 @@ pink.onclick = function () {
     })
 }
 
-// var eraser = document.getElementById('eraser');
-//  如果点击橡皮擦，橡皮擦启用
-// eraser.onclick = function () {
-//     eraserEnabled = true;
-//     action.className = "actions x";
-// }
-//  如果点击画笔，橡皮擦禁用
-// brush.onclick = function () {
-//     eraserEnabled = false;
-//     action.className = "actions";
-// }
+thin.onclick = function(){
+    lineWidth = 3
+}
+thick.onclick = function () {
+    lineWidth = 6
+}
+more.onclick = function () {
+    lineWidth = 9
+}
+
 
 
 
@@ -130,7 +144,7 @@ function drawCircle(x, y, r) {
 // 这个方法的本质，就是从一个点，到下一个点划线
 function drawLine(ox, oy, nx, ny) {
     ctx.beginPath();
-    ctx.lineWidth = 5;
+    ctx.lineWidth = lineWidth;
     ctx.moveTo(ox, oy);
     ctx.lineTo(nx, ny);
     ctx.stroke();
