@@ -4,7 +4,7 @@ var ctx = div.getContext('2d');
 var action = document.getElementById('actions');
 
 autoSetSize(div);  //把画布的宽高设为的跟视图的一样
-listenToMouse(div);  //监听鼠标事件做事情
+listenToUser(div);  //监听鼠标事件做事情
 
 // 橡皮擦
 var eraserEnabled = false;  //eraserEnabled变量表示 橡皮擦是否被激活
@@ -69,41 +69,69 @@ function drawLine(ox, oy, nx, ny) {
 
 
 
-function listenToMouse(canvas) {
+function listenToUser(canvas) {
     var using = false;  //这个变量表示是否在用
     var lastPoint = { x: undefined, y: undefined };  //上一个点的坐标
 
-    canvas.onmousedown = function (a) {
+    if(document.body.ontouchstart !== undefined){
+        canvas.ontouchstart = function(a){
+            var x = a.touches[0].clientX;
+            var y = a.touches[0].clientY;
+            using = true;
+            if (eraserEnabled) {
+                ctx.clearRect(x - 5, y - 5, 10, 10);
+            } else {
+                lastPoint = { x: x, y: y };
+            }
+        }
+        canvas.ontouchmove = function(b){
+            var x = b.touches[0].clientX;
+            var y = b.touches[0].clientY;
+            if (!using) { return };
+            if (eraserEnabled) {
+                ctx.clearRect(x - 5, y - 5, 10, 10);
+            } else {
+                var newPonit = { x: x, y: y };
+                drawLine(lastPoint.x, lastPoint.y, newPonit.x, newPonit.y);
+                lastPoint = newPonit;
+            }
+        }
+        canvas.ontouchend = function(){
+            using = false;
+        }
+    }else{
+        canvas.onmousedown = function (a) {
+            var x = a.clientX;
+            var y = a.clientY;
+            using = true;
+            //如果橡皮擦开始使用了，就清除掉一个矩形，矩形的左上角的坐标是x,y，矩形的宽高是10
+            // 为了让橡皮擦清除的是以鼠标为中心的区域，可以减去矩形宽高的一半
+            if (eraserEnabled) {
+                ctx.clearRect(x - 5, y - 5, 10, 10);
+            } else {
+                lastPoint = { x: x, y: y };
+                // drawCircle(x,y,1);  不用画圆，也可以
+            }
+        }
+        canvas.onmousemove = function (b) {
+            var x = b.clientX;
+            var y = b.clientY;
+            if (!using) { return };
+            if (eraserEnabled) {
+                ctx.clearRect(x - 5, y - 5, 10, 10);
+            } else {
+                var newPonit = { x: x, y: y };
+                // drawCircle(x, y, 1);
+                drawLine(lastPoint.x, lastPoint.y, newPonit.x, newPonit.y);
+                // 当从第一个点画到第二第二个点之后，第二个点就变成了起始点，也就是我们要实时更新第一个点
+                lastPoint = newPonit;
+            }
+        }
 
-        var x = a.clientX;
-        var y = a.clientY;
-        using = true;
-        //如果橡皮擦开始使用了，就清除掉一个矩形，矩形的左上角的坐标是x,y，矩形的宽高是10
-        // 为了让橡皮擦清除的是以鼠标为中心的区域，可以减去矩形宽高的一半
-        if (eraserEnabled) {
-            ctx.clearRect(x - 5, y - 5, 10, 10);
-        } else {
-            lastPoint = { x: x, y: y };
-            // drawCircle(x,y,1);  不用画圆，也可以
+        canvas.onmouseup = function () {
+            using = false;
         }
     }
-    canvas.onmousemove = function (b) {
-        var x = b.clientX;
-        var y = b.clientY;
-        if (!using) { return };
-        if (eraserEnabled) {
-            ctx.clearRect(x - 5, y - 5, 10, 10);
-        } else {
-            var newPonit = { x: x, y: y };
-            // drawCircle(x, y, 1);
-            drawLine(lastPoint.x, lastPoint.y, newPonit.x, newPonit.y);
-            // 当从第一个点画到第二第二个点之后，第二个点就变成了起始点，也就是我们要实时更新第一个点
-            lastPoint = newPonit;
-        }
-    }
-
-    canvas.onmouseup = function () {
-        using = false;
-    }
+   
 
 }
